@@ -34,12 +34,12 @@ jobs:
 
       - name: Run tests
         env: 
-          APP_NAME = "CAR PRICE ML LIFECYCLE API"
-          ENV = "test"
-          MODEL_VERSION = "v1"
-          MODEL_NAME="car-price-predictor"
-          MODEL_TYPE="RandomForestRegressor"
-          INPUT_SCHEMA_VERSION="v1"
-          CURRENCY="CAD"
+          APP_NAME: "CAR PRICE ML LIFECYCLE API"
+          ENV: "test"
+          MODEL_VERSION: "v1"
+          MODEL_NAME: "car-price-predictor"
+          MODEL_TYPE: "RandomForestRegressor"
+          INPUT_SCHEMA_VERSION: "v1"
+          CURRENCY: "CAD"
         run: |
           pytest
