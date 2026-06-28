@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # - name: Train models for tests
+      #   run: |
+      #     python -m src.train_compare_models
+
+      - name: Run tests
+        env: 
+          APP_NAME = "CAR PRICE ML LIFECYCLE API"
+          ENV = "test"
+          MODEL_VERSION = "v1"
+          MODEL_NAME="car-price-predictor"
+          MODEL_TYPE="RandomForestRegressor"
+          INPUT_SCHEMA_VERSION="v1"
+          CURRENCY="CAD"
+        run: |
+          pytest
